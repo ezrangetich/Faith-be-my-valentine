@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Be My Valentine?</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: cornsilk; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; }
+    .container { text-align: center; background-color: #fff; padding: 50px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); }
+    h1 { color: #ff4f58; font-size: 2.5rem; }
+    .buttons button { padding: 10px 20px; font-size: 1.2rem; margin: 10px; cursor: pointer; border: none; border-radius: 5px; }
+    #yes-btn { background-color: #4caf50; color: white; }
+    #no-btn { background-color: #f44336; color: white; }
+    #yes-btn:hover { background-color: #45a049; }
+    #no-btn:hover { background-color: #e53935; }
+    #video-section { display: none; text-align: center; }
+    video { margin-top: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); }
+    .gratitude-message { font-size: 1.5rem; margin-top: 20px; color: #333; }
+  </style>
+</head>
+<body>
+  <div id="main-container" class="container">
+    <h1>Be My Valentine?</h1>
+    <div class="buttons">
+      <button id="yes-btn">Yes</button>
+      <button id="no-btn">No</button>
+    </div>
+  </div>
+
+  <div id="video-section">
+    <img src="Dofoto_20250210_13450969292c36178fe10ec4ea1cd0fd3c6f25457.jpg" class="img-fluid rounded-circle d-block mx-auto" style="width: 200px;"
+    style="width: auto; height: 300px;" alt="Her Image" id="her-image">
+
+    <h2>Thank you <div class="text text-primary"><strong>FAITH</strong></div> for saying Yes! 💖</h2>
+    <p class="gratitude-message">Your kindness means so much to me! Here's a special video just for you:</p>
+    <video width="320" height="240" controls>
+      <source src="1739199581824.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p class="gratitude-message">I'm forever grateful for you! 💖</p>
+  </div>
+  <audio id="loveSong" src="send_me_the_pillow_you_dream_on(0).mp3"></audio>
+
+  <script>
+    let noClickCount = 0;
+
+    const noResponses = [
+      "Oh no! why Mwangi?. 😢",
+      "I'm heartbroken... 😞",
+      "aky usikuwe hivo... 😔",
+      "Why the no? 😢"
+    ];
+
+    document.getElementById('yes-btn').addEventListener('click', () => {
+      // Hide the main container
+      document.getElementById('main-container').style.display = 'none';
+
+      // Show the video section
+      document.getElementById('video-section').style.display = 'block';
+      loveSong.play();
+
+    });
+
+    document.getElementById('no-btn').addEventListener('click', () => {
+      noClickCount++;
+      const responseIndex = noClickCount % noResponses.length;
+
+      // Update the heading with a new response
+      document.querySelector('h1').textContent = noResponses[responseIndex];
+
+      // Randomly reposition the No button
+      const noBtn = document.getElementById('no-btn');
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = Math.random() * 80 + '%';
+      noBtn.style.top = Math.random() * 80 + '%';
+    });
+  </script>
+</body>
+</html>
